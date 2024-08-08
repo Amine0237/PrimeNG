@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="sub-container">
+        <div class="title">User Information</div>
+        
+        <div class="content">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <input placeholder="Username" pInputText pKeyFilter="alphanum" id="username" formControlName="username"/>
+                <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+                    <small *ngIf="username?.errors?.['required']">Username is required.</small>
+                    <small *ngIf="username?.errors?.['minlength']">Username must be at least 3 characters long.</small>
+                </div>
+
+                <input placeholder="First Name" id="firstName" formControlName="firstName" pInputText pKeyFilter="alpha" />
+                <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+                    <small *ngIf="firstName?.errors?.['required']">First name is required.</small>
+                    <small *ngIf="firstName?.errors?.['minlength']">First name must be at least 3 characters long.</small>
+                </div>
+
+                <input placeholder="Last Name" id="lastName" formControlName="lastName" pKeyFilter="alpha" />
+                <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+                    <small *ngIf="lastName?.errors?.['required']">Last name is required.</small>
+                    <small *ngIf="lastName?.errors?.['minlength']">Last name must be at least 3 characters long.</small>
+                </div>
+
+                <input id="email" placeholder="email" formControlName="email"/>
+                <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
+                    <small *ngIf="userForm.get('email')?.errors?.['required']">Email is required.</small>
+                    <small *ngIf="userForm.get('email')?.errors?.['email']">Email must be valid.</small>
+                  </div>
+
+                <p-password [(ngModel)]="passwordd" id="password" class="ng-invalid ng-dirty"  [toggleMask]="true" formControlName="password"/>
+                
+                <button class="btn btn-primary mt-2" type="submit" style="width: 245.6px; height: 49.6px;" [disabled]="userForm.invalid">Submit</button>
+                
+            </form>
+            
+        </div>
+    </div>
+
+</div>
